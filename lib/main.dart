@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:components_app/screens/listview_divider_screen.dart';
+import 'package:components_app/screens/listview_screen.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -7,16 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
-      ),
-    );
+    return const MaterialApp(
+        title: 'Material App',
+        debugShowCheckedModeBanner: false,
+        home: ListViewDividerScreen());
   }
 }
