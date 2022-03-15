@@ -5,10 +5,20 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('HomeScreen'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Flutter Components"),
       ),
+      body: ListView.separated(
+          itemBuilder: (_, index) => ListTile(
+                title: const Text("List Item"),
+                trailing: const Icon(Icons.arrow_forward_ios),
+                onTap: () {
+                  Navigator.pushNamed(context, 'listViewDivider');
+                },
+              ),
+          separatorBuilder: (_, __) => const Divider(),
+          itemCount: 10),
     );
   }
 }
