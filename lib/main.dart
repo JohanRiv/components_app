@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.initialRoute,
-      routes: AppRoutes.routes,
+      routes: AppRoutes.getRoutes(),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }

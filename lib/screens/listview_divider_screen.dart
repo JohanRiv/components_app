@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ListViewDividerScreen extends StatelessWidget {
-  const ListViewDividerScreen({Key? key}) : super(key: key);
+class ListviewDividerScreen extends StatelessWidget {
+  const ListviewDividerScreen({Key? key}) : super(key: key);
 
   final options = const [
     "Full Methal Alchemist",

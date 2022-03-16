@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ListViewScreen extends StatelessWidget {
-  const ListViewScreen({Key? key}) : super(key: key);
+class ListviewScreen extends StatelessWidget {
+  const ListviewScreen({Key? key}) : super(key: key);
 
   final options = const [
     "Full Methal Alchemist",
