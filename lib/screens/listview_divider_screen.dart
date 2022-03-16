@@ -16,9 +16,7 @@ class ListviewDividerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home List View Divider"),
-        elevation: 0,
-        backgroundColor: Colors.indigo,
+        title: const Text("Default Name"),
       ),
       body: ListView.separated(
         itemCount: options.length,
@@ -26,7 +24,6 @@ class ListviewDividerScreen extends StatelessWidget {
           title: Text(options[index]),
           trailing: const Icon(
             Icons.arrow_forward_ios,
-            color: Colors.indigo,
           ),
           onTap: () => {},
         ),
