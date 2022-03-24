@@ -6,11 +6,6 @@ import 'package:components_app/screens/screens.dart';
 class AppRoutes {
   static final List<MenuOptionModel> menuOptions = [
     MenuOptionModel(
-        screenName: 'Home',
-        route: 'home',
-        screen: const HomeScreen(),
-        icon: Icons.home),
-    MenuOptionModel(
         screenName: 'Listview Screen',
         route: 'listview',
         screen: const ListviewScreen(),
@@ -34,7 +29,12 @@ class AppRoutes {
         screenName: 'Avatar',
         route: 'avatar',
         screen: const AvatarScreen(),
-        icon: Icons.person)
+        icon: Icons.person),
+    MenuOptionModel(
+        screenName: 'Animated',
+        route: 'animated',
+        screen: const AnimatedScreen(),
+        icon: Icons.play_circle),
   ];
 
   static const initialRoute = 'home';
@@ -45,6 +45,8 @@ class AppRoutes {
 
   static Map<String, Widget Function(BuildContext)> getRoutes() {
     Map<String, Widget Function(BuildContext)> appRoutes = {};
+    appRoutes.addAll({'home': (BuildContext context) => const HomeScreen()});
+
     for (var item in menuOptions) {
       appRoutes.addAll({item.route: (BuildContext context) => item.screen});
     }
