@@ -29,7 +29,12 @@ class AppRoutes {
         screenName: 'Cards',
         route: 'card',
         screen: const CardScreen(),
-        icon: Icons.card_membership)
+        icon: Icons.card_membership),
+    MenuOptionModel(
+        screenName: 'Avatar',
+        route: 'avatar',
+        screen: const AvatarScreen(),
+        icon: Icons.person)
   ];
 
   static const initialRoute = 'home';

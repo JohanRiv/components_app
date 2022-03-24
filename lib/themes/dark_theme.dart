@@ -14,6 +14,17 @@ class DarkTheme {
       textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
         primary: secundary,
-        backgroundColor: primaryBackground,
-      )));
+      )),
+      dialogTheme: DialogTheme(
+          backgroundColor: primaryBackground,
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10)))),
+      floatingActionButtonTheme:
+          FloatingActionButtonThemeData(backgroundColor: secundary),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              primary: primary,
+              shape: const StadiumBorder(),
+              textStyle: TextStyle(
+                  foreground: Paint()..color = Colors.white, fontSize: 18))));
 }
