@@ -1,6 +1,24 @@
 # components_app
 
-A new Flutter project.
+This project is for understand and practice the use of componenets of Flutter:
+
+Containers
+Routes
+Themes
+Column
+Rows
+Cards
+Avatars
+Forms
+ListViews
+Animations
+
+![Captura de Pantalla 2022-03-24 a la(s) 9 49 53 p m](https://user-images.githubusercontent.com/39147964/160044941-94b884e9-a483-4bef-9aa3-83291fcd0763.png)
+
+![Captura de Pantalla 2022-03-24 a la(s) 9 50 27 p m](https://user-images.githubusercontent.com/39147964/160045004-bfd49bfa-b085-497e-8d87-39471a5f08d9.png)
+
+![Captura de Pantalla 2022-03-24 a la(s) 9 50 52 p m](https://user-images.githubusercontent.com/39147964/160045038-a63653e7-a5bb-401a-9f3f-7a158fc9c02b.png)
+
 
 ## Getting Started
 
