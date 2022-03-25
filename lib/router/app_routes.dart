@@ -35,6 +35,11 @@ class AppRoutes {
         route: 'animated',
         screen: const AnimatedScreen(),
         icon: Icons.play_circle),
+    MenuOptionModel(
+        screenName: 'Form',
+        route: 'form',
+        screen: const FormScreen(),
+        icon: Icons.input),
   ];
 
   static const initialRoute = 'home';
