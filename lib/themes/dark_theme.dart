@@ -22,9 +22,20 @@ class DarkTheme {
       floatingActionButtonTheme:
           FloatingActionButtonThemeData(backgroundColor: secundary),
       elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-              primary: primary,
-              shape: const StadiumBorder(),
-              textStyle: TextStyle(
-                  foreground: Paint()..color = Colors.white, fontSize: 18))));
+        style: ElevatedButton.styleFrom(
+            primary: primary,
+            shape: const StadiumBorder(),
+            textStyle: TextStyle(
+                foreground: Paint()..color = Colors.white, fontSize: 18)),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        floatingLabelStyle: TextStyle(color: secundary),
+        enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: primary),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: secundary),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        iconColor: primary,
+      ));
 }
