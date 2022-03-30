@@ -40,6 +40,11 @@ class AppRoutes {
         route: 'form',
         screen: const FormScreen(),
         icon: Icons.input),
+    MenuOptionModel(
+        screenName: 'Slide',
+        route: 'slide',
+        screen: const SlideScreen(),
+        icon: Icons.swipe_right),
   ];
 
   static const initialRoute = 'home';

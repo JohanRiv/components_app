@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
+      title: 'Components App',
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.initialRoute,
       routes: AppRoutes.getRoutes(),

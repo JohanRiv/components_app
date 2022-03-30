@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:components_app/widgets/widgets.dart';
@@ -17,6 +20,53 @@ class FormScreen extends StatelessWidget {
       'role': ''
     };
 
+    void displayDialogAndroid(BuildContext context) {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: const Text('Alert'),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text('Verifica los datos ingresados'),
+                  ],
+                ),
+                actions: [
+                  TextButton(
+                      onPressed: () => {Navigator.pop(context)},
+                      child: const Text('Ok')),
+                  TextButton(
+                      onPressed: () => {Navigator.pop(context)},
+                      child: const Text('Cancel'))
+                ],
+              ));
+    }
+
+    void displayDialogIos(BuildContext context) {
+      showCupertinoDialog(
+          context: context,
+          builder: (context) => CupertinoAlertDialog(
+                title: const Text('Alert'),
+                content: Column(children: const [
+                  Text('Verifica los datos ingresados'),
+                ]),
+                actions: [
+                  TextButton(
+                      onPressed: () => {Navigator.pop(context)},
+                      child: const Text('Ok')),
+                  TextButton(
+                      onPressed: () => {Navigator.pop(context)},
+                      child: const Text('Cancel'),
+                      style: TextButton.styleFrom(
+                        backgroundColor: null,
+                        textStyle:
+                            TextStyle(foreground: Paint()..color = Colors.red),
+                      ))
+                ],
+              ));
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Register Form'),
@@ -33,7 +83,7 @@ class FormScreen extends StatelessWidget {
                     CustomInputField(
                       icon: Icons.perm_contact_cal_sharp,
                       labelText: 'Nombres',
-                      hintText: 'Juan',
+                      hintText: 'Ej: Juan',
                       validationText: 'Este campo es requerido!',
                       inputType: TextInputType.name,
                       textCapitalization: TextCapitalization.words,
@@ -44,7 +94,7 @@ class FormScreen extends StatelessWidget {
                     CustomInputField(
                       icon: Icons.perm_contact_cal_sharp,
                       labelText: 'Apellidos',
-                      hintText: 'Perez',
+                      hintText: 'Ej: Perez',
                       validationText: 'Este campo es requerido!',
                       inputType: TextInputType.name,
                       textCapitalization: TextCapitalization.words,
@@ -55,7 +105,7 @@ class FormScreen extends StatelessWidget {
                     CustomInputField(
                       icon: Icons.mail_outline_rounded,
                       labelText: 'Email',
-                      hintText: 'tuemail@mail.com',
+                      hintText: 'Ej: tuemail@mail.com',
                       validationText: 'Este campo es requerido!',
                       inputType: TextInputType.emailAddress,
                       textCapitalization: TextCapitalization.none,
@@ -66,7 +116,7 @@ class FormScreen extends StatelessWidget {
                     CustomInputField(
                       icon: Icons.password,
                       labelText: 'Contraseña',
-                      hintText: '*******',
+                      hintText: 'Ej: 12pH-3jf',
                       validationText: 'Este campo es requerido!',
                       inputType: TextInputType.text,
                       textCapitalization: TextCapitalization.none,
@@ -100,6 +150,9 @@ class FormScreen extends StatelessWidget {
                           // Permite validar las validaciones de los campos del formulario
                           if (!formRegisterKey.currentState!.validate()) {
                             print('No valido!');
+                            Platform.isAndroid
+                                ? displayDialogAndroid(context)
+                                : displayDialogIos(context);
                           } else {
                             print('Valido');
                             print(formValues);
