@@ -45,6 +45,11 @@ class AppRoutes {
         route: 'slide',
         screen: const SlideScreen(),
         icon: Icons.swipe_right),
+    MenuOptionModel(
+        screenName: 'ListView Builder',
+        route: 'lvbuilder',
+        screen: const ListviewBuilderScreen(),
+        icon: Icons.build_circle),
   ];
 
   static const initialRoute = 'home';
