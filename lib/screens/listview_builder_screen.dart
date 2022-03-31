@@ -50,6 +50,15 @@ class _ListviewBuilderScreenState extends State<ListviewBuilderScreen> {
     }
   }
 
+  Future onRefresh() async {
+    await Future.delayed(const Duration(seconds: 3));
+    final lastImagesId = imagesId.last;
+    imagesId.clear();
+    imagesId.add(lastImagesId + 1);
+    addImagesListView();
+    setState(() {});
+  }
+
   void addImagesListView() {
     final lastImageId = imagesId.last;
     imagesId.addAll([1, 2, 3, 4, 5].map((e) => lastImageId + e));
@@ -69,34 +78,37 @@ class _ListviewBuilderScreenState extends State<ListviewBuilderScreen> {
           removeBottom: true, // Remueve el padding inferior
           child: Stack(
             children: [
-              ListView.builder(
-                physics:
-                    const BouncingScrollPhysics(), // Adiciona efectos nativos al scroll
-                controller: scrollController,
-                itemCount: imagesId.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Column(
-                    children: [
-                      FadeInImage(
-                          width: double.infinity,
-                          height: 350,
-                          fit: BoxFit.cover,
-                          placeholder: const AssetImage(
-                              'assets/images/gray_background.jpg'),
-                          image: NetworkImage(
-                              'https://picsum.photos/500/350?image=${imagesId[index]}')),
-                      const SizedBox(
-                        height: 20,
-                      )
-                    ],
-                  );
-                },
+              RefreshIndicator(
+                onRefresh: onRefresh,
+                child: ListView.builder(
+                  physics:
+                      const BouncingScrollPhysics(), // Adiciona efectos nativos al scroll
+                  controller: scrollController,
+                  itemCount: imagesId.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Column(
+                      children: [
+                        FadeInImage(
+                            width: double.infinity,
+                            height: 350,
+                            fit: BoxFit.cover,
+                            placeholder: const AssetImage(
+                                'assets/images/gray_background.jpg'),
+                            image: NetworkImage(
+                                'https://picsum.photos/500/350?image=${imagesId[index]}')),
+                        const SizedBox(
+                          height: 20,
+                        )
+                      ],
+                    );
+                  },
+                ),
               ),
               // Mostrar u ocultar un widget con un condicional
               if (isLoading)
                 Positioned(
                     bottom: 40,
-                    left: MediaQuery.of(context).size.width * 0.5 - 35,
+                    left: MediaQuery.of(context).size.width * 0.5 - 20,
                     child: const LoadingPanel())
             ],
           ),
@@ -114,8 +126,8 @@ class LoadingPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(5),
-      width: 70,
-      height: 70,
+      width: 40,
+      height: 40,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: DarkTheme.primaryBackground.withOpacity(0.9),
