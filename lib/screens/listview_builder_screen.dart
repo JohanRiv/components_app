@@ -1,5 +1,8 @@
-import 'package:components_app/themes/themes.dart';
+import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:components_app/themes/themes.dart';
 
 class ListviewBuilderScreen extends StatefulWidget {
   const ListviewBuilderScreen({Key? key}) : super(key: key);
@@ -64,6 +67,69 @@ class _ListviewBuilderScreenState extends State<ListviewBuilderScreen> {
     imagesId.addAll([1, 2, 3, 4, 5].map((e) => lastImageId + e));
   }
 
+  Widget androidList() {
+    return RefreshIndicator(
+      onRefresh: onRefresh,
+      child: ListView.builder(
+        physics:
+            const BouncingScrollPhysics(), // Adiciona efectos nativos al scroll
+        controller: scrollController,
+        itemCount: imagesId.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Column(
+            children: [
+              FadeInImage(
+                  width: double.infinity,
+                  height: 350,
+                  fit: BoxFit.cover,
+                  placeholder:
+                      const AssetImage('assets/images/gray_background.jpg'),
+                  image: NetworkImage(
+                      'https://picsum.photos/500/350?image=${imagesId[index]}')),
+              const SizedBox(
+                height: 20,
+              )
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget iosList() {
+    return Padding(
+      padding: const EdgeInsets.all(0),
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        controller: scrollController,
+        slivers: [
+          CupertinoSliverRefreshControl(
+            onRefresh: onRefresh,
+          ),
+          SliverList(
+              delegate:
+                  SliverChildBuilderDelegate((BuildContext context, int index) {
+            return Column(
+              children: [
+                FadeInImage(
+                    width: double.infinity,
+                    height: 350,
+                    fit: BoxFit.cover,
+                    placeholder:
+                        const AssetImage('assets/images/gray_background.jpg'),
+                    image: NetworkImage(
+                        'https://picsum.photos/500/350?image=${imagesId[index]}')),
+                const SizedBox(
+                  height: 20,
+                )
+              ],
+            );
+          }, childCount: imagesId.length))
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,32 +144,7 @@ class _ListviewBuilderScreenState extends State<ListviewBuilderScreen> {
           removeBottom: true, // Remueve el padding inferior
           child: Stack(
             children: [
-              RefreshIndicator(
-                onRefresh: onRefresh,
-                child: ListView.builder(
-                  physics:
-                      const BouncingScrollPhysics(), // Adiciona efectos nativos al scroll
-                  controller: scrollController,
-                  itemCount: imagesId.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Column(
-                      children: [
-                        FadeInImage(
-                            width: double.infinity,
-                            height: 350,
-                            fit: BoxFit.cover,
-                            placeholder: const AssetImage(
-                                'assets/images/gray_background.jpg'),
-                            image: NetworkImage(
-                                'https://picsum.photos/500/350?image=${imagesId[index]}')),
-                        const SizedBox(
-                          height: 20,
-                        )
-                      ],
-                    );
-                  },
-                ),
-              ),
+              if (Platform.isAndroid) androidList() else iosList(),
               // Mostrar u ocultar un widget con un condicional
               if (isLoading)
                 Positioned(
